@@ -1,5 +1,21 @@
+/* body {
+    background-image: url('pinkBeats.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top;
+    background-size: half;
+    margin: 0;
+    padding: 0;
+} */
+
+.container {
+    background-color: rgba(255, 251, 204, 0.7);
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .topbar {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
 }
 h1 {
     color: rgb(230, 204, 243);
@@ -10,13 +26,18 @@ h1 {
     margin-left: -8px;
 }
 
-img {
+#ppic {
+    width: 20%;
+    height: 30%;
+}
+
+/* img {
     border-radius: 50%;
     border-style: solid;
     border-color: white;
-    border-width: 15px;
-    max-height: 60px;
-    margin-bottom: -11px;
+    border-width: 20px;
+    max-height: 70px;
+    margin-bottom: -50px;
     margin-top: -1em;
     margin-left: 2em;
-}
+} */
