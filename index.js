@@ -50,6 +50,9 @@ function loaditemsInfo() {
     $('#btn').click(function() {
         $('#Create').toggle();
     });
+    $('#btn2').click(function() {
+        $('#Create2').toggle();
+    });
 }
 
 function main() {
