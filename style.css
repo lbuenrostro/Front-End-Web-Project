@@ -24,8 +24,10 @@ h1 {
 }
 
 .topbar {
-    margin-right: -8px;
-    margin-left: -8px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: -80px;
+    margin-left: -80px;
 }
 
 #ppic {
