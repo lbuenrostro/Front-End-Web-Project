@@ -1,12 +1,13 @@
-/* body {
-    background-image: url('pinkBeats.jpg');
+body {
+    font-family: 'Fjalla One', sans-serif;
+    background-image: url('background.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top;
-    background-size: half;
+    background-size: cover;
     margin: 0;
     padding: 0;
-} */
+}
 
 .container {
     background-color: rgba(255, 251, 204, 0.7);
@@ -18,7 +19,8 @@
     background-color: rgb(0, 0, 0);
 }
 h1 {
-    color: rgb(230, 204, 243);
+    color: white;
+    /* color: rgb(230, 204, 243); */
 }
 
 .topbar {
@@ -29,6 +31,8 @@ h1 {
 #ppic {
     width: 20%;
     height: 30%;
+    display: block;
+    background: transparent;
 }
 
 /* img {
