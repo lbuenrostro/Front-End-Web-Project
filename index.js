@@ -1,3 +1,4 @@
+///////BUY//////
 var PAGE_DATA = {
     items: [
         {
@@ -99,9 +100,182 @@ function loaditemsInfo() {
         $('#btn6').attr('disabled', true);
     });
 }
+///////Sell///
+// *****Name FUNCTIONS*****//
+function onlyLetters(string) {
+    var letters = /[a-z]/i;
+    if (letters.test(string)) {
+        return true;
+    }
+    return false;
+}
+function checkingNameError(string) {
+    var characters = [];
+    if (string.length < 3) {
+        characters.push('<li>Please Enter a valid name</li>');
+    }
+    if (onlyLetters(string) == false) {
+        characters.push('<li>Invalid Only letters</li>');
+    }
+    return characters.join('');
+}
+function NameErrorHtml(name) {
+    const html = checkingNameError(name);
+    $('#Name-errors').html(html);
+}
 
+function addNameValidation() {
+    const input = $('#Name-input');
+    input.on('input', function(event) {
+        NameErrorHtml(event.currentTarget.value);
+        enableButton();
+    });
+}
+
+// ********Description FUNCTION***********
+function onlyLetters(string) {
+    var letters = /[a-z]/i;
+    if (letters.test(string)) {
+        return true;
+    }
+    return false;
+}
+function checkingDescriptionError(string) {
+    var characters = [];
+    if (string.length < 3) {
+        characters.push('<li>Write a small description of item</li>');
+    }
+    if (onlyLetters(string) == false) {
+        characters.push('<li>Invalid Only letters</li>');
+    }
+    return characters.join('');
+}
+function DescriptionErrorHtml(Description) {
+    const html = checkingDescriptionError(Description);
+    $('#Description-errors').html(html);
+}
+
+function addDescriptionValidation() {
+    const input = $('#Description-input');
+    input.on('input', function(event) {
+        DescriptionErrorHtml(event.currentTarget.value);
+        enableButton();
+    });
+}
+
+// *****Price FUNCTIONS**************
+
+function containsNum(Price) {
+    var num = /[$0-9]/;
+    if (num.test(Price)) {
+        return true;
+    }
+    return false;
+}
+function checkingPriceError(string) {
+    var characters = [];
+    if (containsNum(string) == false) {
+        characters.push('<li>Price must contain "$" & number</li>');
+    }
+    return characters.join('');
+}
+
+function PriceErrorHtml(Price) {
+    const html = checkingPriceError(Price);
+    $('#Price-errors').html(html);
+}
+
+function addPriceValidation() {
+    const input = $('#Price-input');
+    input.on('input', function(event) {
+        PriceErrorHtml(event.currentTarget.value);
+        enableButton();
+    });
+}
+
+// -------------- ENABLE BUTTON -----------
+
+function checkValidName() {
+    return checkingNameError($('#Name-input').val()).trim() === '';
+}
+function checkValidDescription() {
+    return (
+        checkingDescriptionError($('#Description-input').val()).trim() === ''
+    );
+}
+function checkValidPrice() {
+    return checkingPriceError($('#Price-input').val()).trim() === '';
+}
+function enableButton() {
+    if (checkValidName() && checkValidDescription() && checkValidPrice()) {
+        $('.btn').attr('disabled', false);
+    } else {
+        $('.btn').attr('disabled', true);
+    }
+}
+// -------------- JSON PAGE-DATA -----------
+$('#submit-form').on('submit', function(event) {
+    event.preventDefault();
+    var name = $('#Name-input').val();
+    console.log(name);
+    var Description = $('#Description-input').val();
+    console.log(Description);
+    var Price = $('#Price-input').val();
+    console.log(Price);
+});
+
+function postServer() {
+    $('#submit-form').on('submit', function(event) {
+        $.post(
+            'https://bcca-chirper.herokuapp.com/api/submit/',
+            JSON.stringify({
+                name: $('#Name-input').val(),
+                Description: $('#Description-input').val(),
+                Price: $('#Price-input').val()
+            })
+        )
+            .then(function successfullsubmit(data) {
+                console.log(data);
+            })
+            .catch(function unsuccessfulsubmit(response) {
+                console.log(response.status);
+                console.log(response.response.JSON);
+            });
+    });
+}
+
+// -------------- Log-in -----------
+function loginServer() {
+    $('#login-form').on('submit', function(event) {
+        event.preventDefault();
+        $.post(
+            'https://bcca-chirper.herokuapp.com/api/login/',
+            JSON.stringify({
+                Description: $('#User').val(),
+                password: $('#Pass').val()
+            })
+        )
+            .then(function successfulLogin(data) {
+                // console.log('Hello World');
+                window.location = 'profile/profile.html';
+                console.log(data);
+            })
+            .catch(function unsuccessfulLogin(response) {
+                console.log();
+                console.log(response.status);
+                console.log(response.response.JSON);
+            });
+    });
+}
+// ------------------------------------------
 function main() {
     loaditemsInfo();
+    addNameValidation();
+    addDescriptionValidation();
+    addPriceValidation();
+    addpasswordValidation();
+    postServer();
+    loginServer();
 }
 
 $(main);
