@@ -84,19 +84,19 @@ function loaditemsInfo() {
         $('#Create2').toggle();
     });
     $('#btn3').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase');
+        alert('Added to your bag! Thanks for the purchase $349.95');
         $('#btn3').attr('disabled', true);
     });
     $('#btn4').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase');
+        alert('Added to your bag! Thanks for the purchase $399.95');
         $('#btn4').attr('disabled', true);
     });
     $('#btn5').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase');
+        alert('Added to your bag! Thanks for the purchase $299.95');
         $('#btn5').attr('disabled', true);
     });
     $('#btn6').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase');
+        alert('Added to your bag! Thanks for the purchase $129.95');
         $('#btn6').attr('disabled', true);
     });
 }
