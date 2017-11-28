@@ -100,7 +100,7 @@ function loaditemsInfo() {
         $('#btn6').attr('disabled', true);
     });
 }
-///////Sell///
+/////Sell///
 // *****Name FUNCTIONS*****//
 function onlyLetters(string) {
     var letters = /[a-z]/i;
@@ -216,66 +216,36 @@ function enableButton() {
 // -------------- JSON PAGE-DATA -----------
 $('#submit-form').on('submit', function(event) {
     event.preventDefault();
-    var name = $('#Name-input').val();
-    console.log(name);
+    var Name = $('#Name-input').val();
+    console.log(Name);
     var Description = $('#Description-input').val();
     console.log(Description);
     var Price = $('#Price-input').val();
     console.log(Price);
 });
 
-function postServer() {
-    $('#submit-form').on('submit', function(event) {
-        $.post(
-            'https://bcca-chirper.herokuapp.com/api/submit/',
-            JSON.stringify({
-                name: $('#Name-input').val(),
-                Description: $('#Description-input').val(),
-                Price: $('#Price-input').val()
-            })
-        )
-            .then(function successfullsubmit(data) {
-                console.log(data);
-            })
-            .catch(function unsuccessfulsubmit(response) {
-                console.log(response.status);
-                console.log(response.response.JSON);
-            });
-    });
+// -------Make sell-----
+function makeBeatsObj(item) {
+    return {
+        Name: $('#Name-input').val(),
+        Description: $('#Description-input').val(),
+        Price: $('#Price-input').val()
+    };
 }
 
-// -------------- Log-in -----------
-function loginServer() {
-    $('#login-form').on('submit', function(event) {
-        event.preventDefault();
-        $.post(
-            'https://bcca-chirper.herokuapp.com/api/login/',
-            JSON.stringify({
-                Description: $('#User').val(),
-                password: $('#Pass').val()
-            })
-        )
-            .then(function successfulLogin(data) {
-                // console.log('Hello World');
-                window.location = 'profile/profile.html';
-                console.log(data);
-            })
-            .catch(function unsuccessfulLogin(response) {
-                console.log();
-                console.log(response.status);
-                console.log(response.response.JSON);
-            });
-    });
-}
-// ------------------------------------------
+$('#submit-form').on('submit', function(event) {
+    event.preventDefault();
+    var item = $('#itemPlaceHere').val();
+    PAGE_DATA.items.slice(0, 0, makeBeatsObj(item));
+    $('#submit-form').val('');
+    loaditemsInfo();
+});
+
 function main() {
     loaditemsInfo();
     addNameValidation();
     addDescriptionValidation();
     addPriceValidation();
-    addpasswordValidation();
-    postServer();
-    loginServer();
 }
 
 $(main);
