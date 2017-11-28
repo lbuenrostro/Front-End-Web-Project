@@ -225,21 +225,21 @@ $('#submit-form').on('submit', function(event) {
 });
 
 // -------Make sell-----
-function makeBeatsObj(item) {
-    return {
-        Name: $('#Name-input').val(),
-        Description: $('#Description-input').val(),
-        Price: $('#Price-input').val()
-    };
-}
+// function makeBeatsObj(item) {
+//     return {
+//         Name: $('#Name-input').val(),
+//         Description: $('#Description-input').val(),
+//         Price: $('#Price-input').val()
+//     };
+// }
 
-$('#submit-form').on('submit', function(event) {
-    event.preventDefault();
-    var item = $('#itemPlaceHere').val();
-    PAGE_DATA.items.slice(0, 0, makeBeatsObj(item));
-    $('#submit-form').val('');
-    loaditemsInfo();
-});
+// $('#submit-form').on('submit', function(event) {
+//     event.preventDefault();
+//     var item = $('#itemPlaceHere').val();
+//     PAGE_DATA.items.slice(0, 0, makeBeatsObj(item));
+//     $('#submit-form').val('');
+//     loaditemsInfo();
+// });
 
 function main() {
     loaditemsInfo();
