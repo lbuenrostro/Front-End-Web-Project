@@ -41,60 +41,60 @@
                 </p>
             </div>
         </div>
+        <!-- All the buttons -->
+        <div class="row padded-row">
+            <button type="button" id="btn" class="btn btn-default">
+                <i class="fa fa-apple" aria-hidden="true"></i>BUY BEATS
+            </button>
+            <button type="button" id="btn2" class="btn btn-default">
+                <i class="fa fa-apple" aria-hidden="true"></i>SELL BEATS
+            </button>
+            <button type="button" id="cart" class="btn btn-default">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            </button>
+        </div>
+        <!-- Add to cart -->
+        <div class="row">
+            <div id="items" hidden>items...</div>
+        </div>
+
         <!-- buttton 1 buy-->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div>
-                    <button type="button" id="btn" class="btn btn-default">
-                        <i class="fa fa-apple" aria-hidden="true"></i>BUY BEATS
-                    </button>
-                </div>
-                <div id="Create" style="display:none">
-                    <div id="personaldata">personal-data...</div>
-                </div>
+            <div id="Create" hidden>
+                <div id="personaldata">personal-data...</div>
             </div>
         </div>
         <!-- button 2 sell -->
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                <div>
-                    <button type="button" id="btn2" class="btn btn-default">
-                        <i class="fa fa-apple" aria-hidden="true"></i>SELL BEATS
-                    </button>
-                </div>
-                <div id="Create2" style="display:none">
-                    <form id="submit-form">
-                        <h3>Sell Your OWN BEATS!</h3>
-                        <div class="form-group">
-                            <label for="imagename"> Image:</label>
-                            <input type="text" class="form-control" id="imagename" placeholder="Enter Url" value="" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="Name"> Beats Name:</label>
-                            <input type="text" class="form-control" id="Name-input" aria-describedby="NameHelp" placeholder="Enter Name" required>
-                            <ul id="Name-errors"></ul>
-                        </div>
-                        <div class="form-group">
-                            <label for="Description">Description:</label>
-                            <input type="text" class="form-control" id="Description-input" aria-describedby="DescriptionHelp" placeholder="Enter Description"
-                                required>
-                            <ul id="Description-errors"></ul>
-                        </div>
-                        <div class="form-group">
-                            <label for="Price">Price: $</label>
-                            <input type="text" class="form-control" id="Price-input" aria-describedby="PriceHelp" placeholder="Enter Price" required>
-                            <ul id="Price-errors"></ul>
-                        </div>
-                        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-                        <br>
-                    </form>
-                </div>
+            <div id="Create2" class="col-lg-8 col-sm-12 col-lg-offset-2" hidden>
+                <form id="submit-form">
+                    <h3>Sell Your OWN BEATS!</h3>
+                    <div class="form-group">
+                        <label for="imagename"> Image:</label>
+                        <input type="text" class="form-control" id="imagename" placeholder="Enter Url" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Name"> Beats Name:</label>
+                        <input type="text" class="form-control" id="Name-input" aria-describedby="NameHelp" placeholder="Enter Name" required>
+                        <ul id="Name-errors"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description:</label>
+                        <input type="text" class="form-control" id="Description-input" aria-describedby="DescriptionHelp" placeholder="Enter Description"
+                            required>
+                        <ul id="Description-errors"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Price: $</label>
+                        <input type="text" class="form-control" id="Price-input" aria-describedby="PriceHelp" placeholder="Enter Price" required>
+                        <ul id="Price-errors"></ul>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                    <br>
+                </form>
             </div>
         </div>
-        <!-- Add to cart -->
-        <div class="addCart">
-            <div id="items">items...</div>
-        </div>
+
     </div>
     <script src="vendor/jquery.js"></script>
     <script src="vendor/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
