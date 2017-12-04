@@ -6,28 +6,32 @@ var PAGE_DATA = {
             Name: 'Beats STUDIO3 Wireless',
             Description:
                 'Apple W1 chip, Wireless Bluetooth,<br>Pure Adaptive Noise Cancelling actively blocks external noise<br>With Fast Fuel, a 10-minute charge gives 3 hours of play when battery is low        ',
-            Price: '349.95'
+            Price: '349.95',
+            Quantity: '5'
         },
         {
             img: 'images/pro.png',
             Name: 'Beats Pro',
             Description:
                 'Clear highs adn deep lows for premium sound quality,<br>Rotating ear cups,<br>Durable housing and cushioned headband for long hours in the studio',
-            Price: '399.95'
+            Price: '399.95',
+            Quantity: '5'
         },
         {
             img: 'images/solo.png',
             Name: 'Beats SOLO3 Wireless',
             Description:
                 'Connect via Class 1 Bluetooth with your device for wireless listening<br>Up to 40 hours of battery life for multi-day use<br>With Fast Fuel, 5 minutes of charging gives you 3 hours of playback when battery is low',
-            Price: '299.95'
+            Price: '299.95',
+            Quantity: '5'
         },
         {
             img: 'images/ep.png',
             Name: 'Beats EP',
             Description:
                 'Fine-tuned acoustics for the clarity and depth you expect from Beats<br>Durable,lightweight design reinforced with stainless steel<br>Battery-free for unlimited platback<br>Adjustment vertiical sliders for a peronalized fit',
-            Price: '129.95'
+            Price: '129.95',
+            Quantity: '5'
         }
     ]
 };
@@ -37,6 +41,7 @@ function makeItem(item) {
     html += '<h3>' + item.Name + '</h3>';
     html += '<p>' + item.Description + '</p>';
     html += '<p><strong>' + '$' + item.Price + '</strong></p>';
+    html += '<p>Quantity: ' + item.Quantity + '</p>';
     html +=
         '<button type="button" id="btn3" class="btn btn-default">' +
         '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
