@@ -7,7 +7,11 @@ var PAGE_DATA = {
             Description:
                 'Apple W1 chip, Wireless Bluetooth,<br>Pure Adaptive Noise Cancelling actively blocks external noise<br>With Fast Fuel, a 10-minute charge gives 3 hours of play when battery is low        ',
             Price: '349.95',
-            Quantity: '5'
+            quantity: '5',
+            button:
+                '<button type="button" id="btn3" class="btn btn-default">' +
+                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+                '</button>'
         },
         {
             img: 'images/pro.png',
@@ -15,7 +19,11 @@ var PAGE_DATA = {
             Description:
                 'Clear highs adn deep lows for premium sound quality,<br>Rotating ear cups,<br>Durable housing and cushioned headband for long hours in the studio',
             Price: '399.95',
-            Quantity: '5'
+            quantity: '5',
+            button:
+                '<button type="button" id="btn4" class="btn btn-default">' +
+                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+                '</button>'
         },
         {
             img: 'images/solo.png',
@@ -23,7 +31,11 @@ var PAGE_DATA = {
             Description:
                 'Connect via Class 1 Bluetooth with your device for wireless listening<br>Up to 40 hours of battery life for multi-day use<br>With Fast Fuel, 5 minutes of charging gives you 3 hours of playback when battery is low',
             Price: '299.95',
-            Quantity: '5'
+            quantity: '5',
+            button:
+                '<button type="button" id="btn5" class="btn btn-default">' +
+                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+                '</button>'
         },
         {
             img: 'images/ep.png',
@@ -31,7 +43,11 @@ var PAGE_DATA = {
             Description:
                 'Fine-tuned acoustics for the clarity and depth you expect from Beats<br>Durable,lightweight design reinforced with stainless steel<br>Battery-free for unlimited platback<br>Adjustment vertiical sliders for a peronalized fit',
             Price: '129.95',
-            Quantity: '5'
+            quantity: '5',
+            button:
+                '<button type="button" id="btn6" class="btn btn-default">' +
+                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+                '</button>'
         }
     ]
 };
@@ -41,11 +57,8 @@ function makeItem(item) {
     html += '<h3>' + item.Name + '</h3>';
     html += '<p>' + item.Description + '</p>';
     html += '<p><strong>' + '$' + item.Price + '</strong></p>';
-    html += '<p>Quantity: ' + item.Quantity + '</p>';
-    html +=
-        '<button type="button" id="btn3" class="btn btn-default">' +
-        '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-        '</button>';
+    html += '<p>Quantity: ' + item.quantity + '</p>';
+    html += item.button;
     return html;
 }
 
@@ -62,6 +75,18 @@ function loaditemsInfo() {
     });
     $('#btn2').click(function() {
         $('#Create2').toggle();
+    });
+    $('#btn3').click(function() {
+        $('#Create3').toggle();
+    });
+    $('#btn4').click(function() {
+        $('#Create4').toggle();
+    });
+    $('#btn5').click(function() {
+        $('#Create5').toggle();
+    });
+    $('#btn6').click(function() {
+        $('#Create6').toggle();
     });
 }
 /////Sell///
