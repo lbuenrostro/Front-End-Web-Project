@@ -7,11 +7,7 @@ var PAGE_DATA = {
             Description:
                 'Apple W1 chip, Wireless Bluetooth,<br>Pure Adaptive Noise Cancelling actively blocks external noise<br>With Fast Fuel, a 10-minute charge gives 3 hours of play when battery is low        ',
             Price: '349.95',
-            quantity: '5',
-            button:
-                '<button type="button" id="btn3" onclick="RemoveQuantity()" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>'
+            quantity: '5'
         },
         {
             img: 'images/pro.png',
@@ -19,11 +15,7 @@ var PAGE_DATA = {
             Description:
                 'Clear highs adn deep lows for premium sound quality,<br>Rotating ear cups,<br>Durable housing and cushioned headband for long hours in the studio',
             Price: '399.95',
-            quantity: '5',
-            button:
-                '<button type="button" id="btn4" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>'
+            quantity: '6'
         },
         {
             img: 'images/solo.png',
@@ -31,11 +23,7 @@ var PAGE_DATA = {
             Description:
                 'Connect via Class 1 Bluetooth with your device for wireless listening<br>Up to 40 hours of battery life for multi-day use<br>With Fast Fuel, 5 minutes of charging gives you 3 hours of playback when battery is low',
             Price: '299.95',
-            quantity: '5',
-            button:
-                '<button type="button" id="btn5" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>'
+            quantity: '2'
         },
         {
             img: 'images/ep.png',
@@ -43,50 +31,40 @@ var PAGE_DATA = {
             Description:
                 'Fine-tuned acoustics for the clarity and depth you expect from Beats<br>Durable,lightweight design reinforced with stainless steel<br>Battery-free for unlimited platback<br>Adjustment vertiical sliders for a peronalized fit',
             Price: '129.95',
-            quantity: '5',
-            button:
-                '<button type="button" id="btn6" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>'
+            quantity: '7'
         }
     ]
 };
 
-function makeItem(item) {
-    var html = '<img id="ppic" src="' + item.img + '">';
+function makeItem(i) {
+    var item = PAGE_DATA.items[i];
+    var html = '<div class="col-lg-4 col-sm-12">';
+    html += '<img class="ppic" src="' + item.img + '">';
     html += '<h3>' + item.Name + '</h3>';
     html += '<p>' + item.Description + '</p>';
     html += '<p><strong><h4>' + '$' + item.Price + '</h4></strong></p>';
     html += '<p>Quantity: ' + item.quantity + '</p>';
-    html += item.button;
+    html +=
+        '<button type="button" class="btn btn-default" onclick="RemoveQuantity(' +
+        i +
+        ')">' +
+        '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+        '</button>';
+    html += '</div>';
     return html;
 }
 
 function loaditemsInfo() {
-    var items = PAGE_DATA.items;
-    var html = items
-        .map(function(item) {
-            return makeItem(item);
-        })
-        .join('<hr>');
+    var html = '';
+    for (var c = 0; c < PAGE_DATA.items.length; c++) {
+        html += makeItem(c);
+    }
     $('#personaldata').html(html);
     $('#btn').click(function() {
         $('#Create').toggle();
     });
     $('#btn2').click(function() {
         $('#Create2').toggle();
-    });
-    $('#btn3').click(function() {
-        $('#Create3').toggle();
-    });
-    $('#btn4').click(function() {
-        $('#Create4').toggle();
-    });
-    $('#btn5').click(function() {
-        $('#Create5').toggle();
-    });
-    $('#btn6').click(function() {
-        $('#Create6').toggle();
     });
 }
 /////Sell///
@@ -213,21 +191,10 @@ function makeBeatsObj() {
 }
 // -------shopping cart -----
 
-function RemoveQuantity() {
-    var item = PAGE_DATA.items;
-    for (var i in item) {
-        $('#btn3').on(
-        'click',
-        // function(event) {
-        item[i].quantity > 0;
-        console.log(item[i].quantity);
-        item[i].quantity -= 1;
-        console.log(item[i].quantity);
-        // },
-        console.log('hello world');
-        // );
-    }
-    // $('#items').html();
+function RemoveQuantity(i) {
+    var instock = PAGE_DATA.items[i].quantity;
+    instock = Math.max(0, instock - 1);
+    PAGE_DATA.items[i].quantity = instock;
     loaditemsInfo();
 }
 
