@@ -9,7 +9,7 @@ var PAGE_DATA = {
             Price: '349.95',
             quantity: '5',
             button:
-                '<button type="button" id="btn3" class="btn btn-default">' +
+                '<button type="button" id="btn3" onclick="RemoveQuantity()" class="btn btn-default">' +
                 '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
                 '</button>'
         },
@@ -56,7 +56,7 @@ function makeItem(item) {
     var html = '<img id="ppic" src="' + item.img + '">';
     html += '<h3>' + item.Name + '</h3>';
     html += '<p>' + item.Description + '</p>';
-    html += '<p><strong>' + '$' + item.Price + '</strong></p>';
+    html += '<p><strong><h4>' + '$' + item.Price + '</h4></strong></p>';
     html += '<p>Quantity: ' + item.quantity + '</p>';
     html += item.button;
     return html;
@@ -211,6 +211,25 @@ function makeBeatsObj() {
         Price: $('#Price-input').val()
     };
 }
+// -------shopping cart -----
+
+function RemoveQuantity() {
+    var item = PAGE_DATA.items;
+    for (var i in item) {
+        $('#btn3').on(
+        'click',
+        // function(event) {
+        item[i].quantity > 0;
+        console.log(item[i].quantity);
+        item[i].quantity -= 1;
+        console.log(item[i].quantity);
+        // },
+        console.log('hello world');
+        // );
+    }
+    // $('#items').html();
+    loaditemsInfo();
+}
 
 function main() {
     loaditemsInfo();
@@ -219,9 +238,7 @@ function main() {
     addPriceValidation();
     $('#submit-form').on('submit', function(event) {
         event.preventDefault();
-        // var price = makeBeatsObj();
         PAGE_DATA.items.splice(0, 0, makeBeatsObj());
-        // console.log(price.Price);
         loaditemsInfo();
     });
 }
