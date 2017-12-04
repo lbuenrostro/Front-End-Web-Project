@@ -36,7 +36,7 @@
                         <b>Elizabethx BEATS</b>
                     </i> Audio brings you the best of headphones, The brand continues to successfully bring the energy, emotion
                     and excitement of playback in the recording studio back to the listening experience for music lovers
-                    worldwide. Be part of this amzing brand and Buy/Sell
+                    worldwide. Be part of this amazing brand and Buy/Sell
                     <strong>HERE!</strong>."
                 </p>
             </div>
@@ -51,7 +51,6 @@
                 </div>
                 <div id="Create" style="display:none">
                     <div id="personaldata">personal-data...</div>
-                    <div class="from-group" id="itemPlaceHere"></div>
                 </div>
             </div>
         </div>
@@ -67,8 +66,12 @@
                     <form id="submit-form">
                         <h3>Sell Your OWN BEATS!</h3>
                         <div class="form-group">
+                            <label for="imagename"> Image:</label>
+                            <input type="text" class="form-control" id="imagename" placeholder="Enter Url" value="" required>
+                        </div>
+                        <div class="form-group">
                             <label for="Name"> Beats Name:</label>
-                            <input type="text" class="form-control" id="Name-input" aria-describedby="NameHelp" placeholder="Enter Name">
+                            <input type="text" class="form-control" id="Name-input" aria-describedby="NameHelp" placeholder="Enter Name" required>
                             <ul id="Name-errors"></ul>
                         </div>
                         <div class="form-group">
@@ -78,11 +81,11 @@
                             <ul id="Description-errors"></ul>
                         </div>
                         <div class="form-group">
-                            <label for="Price">Price</label>
-                            <input type="text" class="form-control" id="Price-input" aria-describedby="PriceHelp" placeholder="Enter Price">
+                            <label for="Price">Price: $</label>
+                            <input type="text" class="form-control" id="Price-input" aria-describedby="PriceHelp" placeholder="Enter Price" required>
                             <ul id="Price-errors"></ul>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                         <br>
                     </form>
                 </div>
