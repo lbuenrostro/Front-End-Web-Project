@@ -2,60 +2,32 @@
 var PAGE_DATA = {
     items: [
         {
-            img: 'studio.png',
+            img: 'images/studio.png',
             Name: 'Beats STUDIO3 Wireless',
             Description:
                 'Apple W1 chip, Wireless Bluetooth,<br>Pure Adaptive Noise Cancelling actively blocks external noise<br>With Fast Fuel, a 10-minute charge gives 3 hours of play when battery is low        ',
-            Price: '$349.95',
-            button:
-                '<button type="button" id="btn3" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>' +
-                '<br/>' +
-                '<small id="btn3" class="form-text text-muted">' +
-                'Taxes & shipping included</small>'
+            Price: '349.95'
         },
         {
-            img: 'pro.png',
+            img: 'images/pro.png',
             Name: 'Beats Pro',
             Description:
                 'Clear highs adn deep lows for premium sound quality,<br>Rotating ear cups,<br>Durable housing and cushioned headband for long hours in the studio',
-            Price: '$399.95',
-            button:
-                '<button type="button" id="btn4" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>' +
-                '<br/>' +
-                '<small id="btn4" class="form-text text-muted">' +
-                'Taxes & shipping included</small>'
+            Price: '399.95'
         },
         {
-            img: 'solo.png',
+            img: 'images/solo.png',
             Name: 'Beats SOLO3 Wireless',
             Description:
                 'Connect via Class 1 Bluetooth with your device for wireless listening<br>Up to 40 hours of battery life for multi-day use<br>With Fast Fuel, 5 minutes of charging gives you 3 hours of playback when battery is low',
-            Price: '$299.95',
-            button:
-                '<button type="button" id="btn5" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>' +
-                '<br/>' +
-                '<small id="btn5" class="form-text text-muted">' +
-                'Taxes & shipping included</small>'
+            Price: '299.95'
         },
         {
-            img: 'ep.png',
+            img: 'images/ep.png',
             Name: 'Beats EP',
             Description:
                 'Fine-tuned acoustics for the clarity and depth you expect from Beats<br>Durable,lightweight design reinforced with stainless steel<br>Battery-free for unlimited platback<br>Adjustment vertiical sliders for a peronalized fit',
-            Price: '$129.95',
-            button:
-                '<button type="button" id="btn6" class="btn btn-default">' +
-                '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-                '</button>' +
-                '<br/>' +
-                '<small id="btn6" class="form-text text-muted">' +
-                'Taxes & shipping included</small>'
+            Price: '129.95'
         }
     ]
 };
@@ -64,7 +36,11 @@ function makeItem(item) {
     var html = '<img id="ppic" src="' + item.img + '">';
     html += '<h3>' + item.Name + '</h3>';
     html += '<p>' + item.Description + '</p>';
-    html += '<p>' + item.Price + '<p>' + item.button;
+    html += '<p><strong>' + '$' + item.Price + '</strong></p>';
+    html +=
+        '<button type="button" id="btn3" class="btn btn-default">' +
+        '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+        '</button>';
     return html;
 }
 
@@ -76,28 +52,11 @@ function loaditemsInfo() {
         })
         .join('<hr>');
     $('#personaldata').html(html);
-    $('#items-pic').attr('src', items.img);
     $('#btn').click(function() {
         $('#Create').toggle();
     });
     $('#btn2').click(function() {
         $('#Create2').toggle();
-    });
-    $('#btn3').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase $349.95');
-        $('#btn3').attr('disabled', true);
-    });
-    $('#btn4').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase $399.95');
-        $('#btn4').attr('disabled', true);
-    });
-    $('#btn5').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase $299.95');
-        $('#btn5').attr('disabled', true);
-    });
-    $('#btn6').on('click', function() {
-        alert('Added to your bag! Thanks for the purchase $129.95');
-        $('#btn6').attr('disabled', true);
     });
 }
 /////Sell///
@@ -213,39 +172,28 @@ function enableButton() {
         $('.btn').attr('disabled', true);
     }
 }
-// -------------- JSON PAGE-DATA -----------
-$('#submit-form').on('submit', function(event) {
-    event.preventDefault();
-    var Name = $('#Name-input').val();
-    console.log(Name);
-    var Description = $('#Description-input').val();
-    console.log(Description);
-    var Price = $('#Price-input').val();
-    console.log(Price);
-});
-
 // -------Make sell-----
-// function makeBeatsObj(item) {
-//     return {
-//         Name: $('#Name-input').val(),
-//         Description: $('#Description-input').val(),
-//         Price: $('#Price-input').val()
-//     };
-// }
-
-// $('#submit-form').on('submit', function(event) {
-//     event.preventDefault();
-//     var item = $('#itemPlaceHere').val();
-//     PAGE_DATA.items.slice(0, 0, makeBeatsObj(item));
-//     $('#submit-form').val('');
-//     loaditemsInfo();
-// });
+function makeBeatsObj() {
+    return {
+        img: $('#imagename').val(),
+        Name: $('#Name-input').val(),
+        Description: $('#Description-input').val(),
+        Price: $('#Price-input').val()
+    };
+}
 
 function main() {
     loaditemsInfo();
     addNameValidation();
     addDescriptionValidation();
     addPriceValidation();
+    $('#submit-form').on('submit', function(event) {
+        event.preventDefault();
+        // var price = makeBeatsObj();
+        PAGE_DATA.items.splice(0, 0, makeBeatsObj());
+        // console.log(price.Price);
+        loaditemsInfo();
+    });
 }
 
 $(main);
