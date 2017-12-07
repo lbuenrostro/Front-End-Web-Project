@@ -36,8 +36,7 @@ var PAGE_DATA = {
     ]
 };
 var cart = [];
-var prices = [];
-var Total = 0;
+var TOTAL = 0;
 
 function makeItem(i) {
     var item = PAGE_DATA.items[i];
@@ -218,8 +217,8 @@ function makeBeatsObj() {
         img: $('#imagename').val(),
         Name: $('#Name-input').val(),
         Description: $('#Description-input').val(),
-        Price: $('#Price-input').val(),
-        quantity: $('#quantity-input').val()
+        Price: Number($('#Price-input').val()),
+        quantity: Number($('#quantity-input').val())
     };
 }
 // -------shopping cart quantity -----
@@ -232,12 +231,9 @@ function RemoveQuantity(i) {
         instock -= 1;
         PAGE_DATA.items[i].quantity = instock;
         cart.push(purchase);
-        prices.push(money);
-        for (var i = 0, len = prices.length; i < len; i++) {
-            Total += parseFloat(prices[i]);
-        }
+        TOTAL += Number(money);
         $('#Total').html(
-            Total.toLocaleString('en-US', {
+            TOTAL.toLocaleString('en-US', {
                 style: 'currency',
                 currency: 'USD'
             })
@@ -286,8 +282,12 @@ function main() {
 
 $('#submit-form').on('submit', function(event) {
     event.preventDefault();
-    PAGE_DATA.items.splice(0, 0, makeBeatsObj());
+    var headphone = makeBeatsObj();
+    PAGE_DATA.items.splice(0, 0, headphone);
+    $('.form-control').val('');
     loaditemsInfo();
+    $('#sell-div').hide(1000);
+    $('#buy-div').show(500);
 });
 
 $(main);
