@@ -79,10 +79,10 @@ function onlyLetters(string) {
 function checkingNameError(string) {
     var characters = [];
     if (string.length < 3) {
-        characters.push('<li>Please Enter a valid name</li>');
+        characters.push('<li class="error">Please Enter a valid name</li>');
     }
     if (onlyLetters(string) == false) {
-        characters.push('<li>Invalid Only letters</li>');
+        characters.push('<li class="error">Invalid Only letters</li>');
     }
     return characters.join('');
 }
@@ -110,10 +110,12 @@ function onlyLetters(string) {
 function checkingDescriptionError(string) {
     var characters = [];
     if (string.length < 3) {
-        characters.push('<li>Write a small description of item</li>');
+        characters.push(
+            '<li class="error">Write a small description of item</li>'
+        );
     }
     if (onlyLetters(string) == false) {
-        characters.push('<li>Invalid Only letters</li>');
+        characters.push('<li class="error">Invalid Only letters</li>');
     }
     return characters.join('');
 }
@@ -240,7 +242,15 @@ function RemoveQuantity(i) {
                 currency: 'USD'
             })
         );
-        $('#cart').html(cart.join('<br>'));
+        var str_cart =
+            '<ul>' +
+            cart
+                .map(function(element) {
+                    return '<li>' + element + '</li>';
+                })
+                .join('') +
+            '</ul>';
+        $('#cart').html(str_cart);
     }
     loaditemsInfo();
 }

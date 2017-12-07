@@ -51,7 +51,7 @@ h1 {
     padding: 5px;
     font-size: 23px;
 }
-li {
+.error {
     color: red;
 }
 
@@ -62,4 +62,22 @@ li {
 .padded-row {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 15px;
+}
+
+#Total {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 5em;
+}
+
+#cart {
+    margin: 7px;
+    font-size: 1.75em;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 5px 20px 5px;
+}
+
+#shopping-cart {
+    padding-top: 20px;
 }
