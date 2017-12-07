@@ -65,16 +65,7 @@ function loaditemsInfo() {
         html += makeItem(c);
     }
     $('#personaldata').html(html);
-    $('#btn').click(function() {
-        $('#Create').toggle();
-    });
-
-    $('#btn3').click(function() {
-        $('#Create3').toggle();
-    });
-    $('#btn2').click(function() {
-        $('#Create2').toggle();
-    });
+    $('#cart-total').text(cart.length);
 }
 /////Sell///
 // *****Name FUNCTIONS*****//
@@ -238,7 +229,7 @@ function RemoveQuantity(i) {
         var money = PAGE_DATA.items[i].Price;
         instock -= 1;
         PAGE_DATA.items[i].quantity = instock;
-        cart.push(purchase, '<br>');
+        cart.push(purchase);
         prices.push(money);
         for (var i = 0, len = prices.length; i < len; i++) {
             Total += parseFloat(prices[i]);
@@ -249,21 +240,44 @@ function RemoveQuantity(i) {
                 currency: 'USD'
             })
         );
-        $('#cart').html(cart);
+        $('#cart').html(cart.join('<br>'));
     }
     loaditemsInfo();
 }
+
+function establishButtonHandlers() {
+    $('#buy-btn').click(function() {
+        $('#shopping-cart').hide(450);
+        $('#sell-div').hide(450);
+        $('#buy-div').show(500);
+    });
+
+    $('#cart-btn').click(function() {
+        $('#buy-div').hide(450);
+        $('#sell-div').hide(450);
+        $('#shopping-cart').show(500);
+    });
+
+    $('#sell-btn').click(function() {
+        $('#shopping-cart').hide(450);
+        $('#buy-div').hide(450);
+        $('#sell-div').show(500);
+    });
+}
+
 function main() {
     loaditemsInfo();
+    establishButtonHandlers();
     addNameValidation();
     addDescriptionValidation();
     addPriceValidation();
     addquantityValidation();
-    $('#submit-form').on('submit', function(event) {
-        event.preventDefault();
-        PAGE_DATA.items.splice(0, 0, makeBeatsObj());
-        loaditemsInfo();
-    });
 }
+
+$('#submit-form').on('submit', function(event) {
+    event.preventDefault();
+    PAGE_DATA.items.splice(0, 0, makeBeatsObj());
+    loaditemsInfo();
+});
 
 $(main);

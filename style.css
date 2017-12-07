@@ -39,27 +39,23 @@ h1 {
     text-align: center;
     font-size: 15px;
 }
-#cart,
-#btn,
-#btn2 {
+.top-btn {
     background-color: white;
     text-align: center;
     border-radius: 5px 20px 5px;
     padding: 16px;
 }
 
+.fa-shopping-cart,
 .fa-apple {
     padding: 5px;
     font-size: 23px;
-}
-.fa-shopping-cart {
-    font-size: 55px;
 }
 li {
     color: red;
 }
 
-#cart {
+#cart-btn {
     float: right;
 }
 
