@@ -35,6 +35,9 @@ var PAGE_DATA = {
         }
     ]
 };
+var cart = [];
+var prices = [];
+var Total = 0;
 
 function makeItem(i) {
     var item = PAGE_DATA.items[i];
@@ -44,12 +47,14 @@ function makeItem(i) {
     html += '<p>' + item.Description + '</p>';
     html += '<p><strong><h4>' + '$' + item.Price + '</h4></strong></p>';
     html += '<p>Quantity: ' + item.quantity + '</p>';
-    html +=
-        '<button type="button" class="btn btn-default" onclick="RemoveQuantity(' +
-        i +
-        ')">' +
-        '<i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
-        '</button>';
+    if (item.quantity > 0) {
+        html +=
+            '<button type="button" class="btn btn-default" onclick="RemoveQuantity(' +
+            i +
+            ')">' +
+            '<div class="purchase"><i class="fa fa-apple" aria-hidden="true"></i>Purchase' +
+            '</button></div>';
+    }
     html += '</div>';
     return html;
 }
@@ -62,6 +67,10 @@ function loaditemsInfo() {
     $('#personaldata').html(html);
     $('#btn').click(function() {
         $('#Create').toggle();
+    });
+
+    $('#btn3').click(function() {
+        $('#Create3').toggle();
     });
     $('#btn2').click(function() {
         $('#Create2').toggle();
@@ -159,7 +168,34 @@ function addPriceValidation() {
         enableButton();
     });
 }
+// -------------- quantity FUNCTIONS -----------
+function containNum(quantity) {
+    var num = /[0-9]/;
+    if (num.test(quantity)) {
+        return true;
+    }
+    return false;
+}
+function checkingquantityError(string) {
+    var characters = [];
+    if (containNum(string) == false) {
+        characters.push('<li>only numbers</li>');
+    }
+    return characters.join('');
+}
 
+function quantityErrorHtml(quantity) {
+    const html = checkingquantityError(quantity);
+    $('#quantity-errors').html(html);
+}
+
+function addquantityValidation() {
+    const input = $('#quantity-input');
+    input.on('input', function(event) {
+        quantityErrorHtml(event.currentTarget.value);
+        enableButton();
+    });
+}
 // -------------- ENABLE BUTTON -----------
 
 function checkValidName() {
@@ -172,6 +208,9 @@ function checkValidDescription() {
 }
 function checkValidPrice() {
     return checkingPriceError($('#Price-input').val()).trim() === '';
+}
+function checkValidquantity() {
+    return checkingquantityError($('#quantity-input').val()).trim() === '';
 }
 function enableButton() {
     if (checkValidName() && checkValidDescription() && checkValidPrice()) {
@@ -186,23 +225,40 @@ function makeBeatsObj() {
         img: $('#imagename').val(),
         Name: $('#Name-input').val(),
         Description: $('#Description-input').val(),
-        Price: $('#Price-input').val()
+        Price: $('#Price-input').val(),
+        quantity: $('#quantity-input').val()
     };
 }
-// -------shopping cart -----
+// -------shopping cart quantity -----
 
 function RemoveQuantity(i) {
     var instock = PAGE_DATA.items[i].quantity;
-    instock = Math.max(0, instock - 1);
-    PAGE_DATA.items[i].quantity = instock;
+    if (instock > 0) {
+        var purchase = PAGE_DATA.items[i].Name;
+        var money = PAGE_DATA.items[i].Price;
+        instock -= 1;
+        PAGE_DATA.items[i].quantity = instock;
+        cart.push(purchase, '<br>');
+        prices.push(money);
+        for (var i = 0, len = prices.length; i < len; i++) {
+            Total += parseFloat(prices[i]);
+        }
+        $('#Total').html(
+            Total.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            })
+        );
+        $('#cart').html(cart);
+    }
     loaditemsInfo();
 }
-
 function main() {
     loaditemsInfo();
     addNameValidation();
     addDescriptionValidation();
     addPriceValidation();
+    addquantityValidation();
     $('#submit-form').on('submit', function(event) {
         event.preventDefault();
         PAGE_DATA.items.splice(0, 0, makeBeatsObj());

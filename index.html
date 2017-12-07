@@ -49,15 +49,17 @@
             <button type="button" id="btn2" class="btn btn-default">
                 <i class="fa fa-apple" aria-hidden="true"></i>SELL BEATS
             </button>
-            <button type="button" id="cart" class="btn btn-default">
+            <button type="button" id="btn3" class="btn btn-default">VIEW CART
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
         </div>
         <!-- Add to cart -->
         <div class="row">
-            <div id="items" hidden>items...</div>
+            <div id="Create3" hidden>
+                <div id='cart'>cart...</div>
+                <div id='Total'>Total...</div>
+            </div>
         </div>
-
         <!-- buttton 1 buy-->
         <div class="row">
             <div id="Create" hidden>
@@ -88,6 +90,11 @@
                         <label for="Price">Price: $</label>
                         <input type="text" class="form-control" id="Price-input" aria-describedby="PriceHelp" placeholder="Enter Price" required>
                         <ul id="Price-errors"></ul>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity"> quantity:</label>
+                        <input type="text" class="form-control" id="quantity-input" placeholder="Enter quantity" value="" required>
+                        <ul id="quantity-errors"></ul>
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
                     <br>
