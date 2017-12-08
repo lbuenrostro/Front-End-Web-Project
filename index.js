@@ -134,7 +134,7 @@ function addDescriptionValidation() {
 // *****Price FUNCTIONS**************
 
 function containsNum(Price) {
-    var num = /[$0-9]/;
+    var num = /[0-9]/;
     if (num.test(Price)) {
         return true;
     }
@@ -143,7 +143,7 @@ function containsNum(Price) {
 function checkingPriceError(string) {
     var characters = [];
     if (containsNum(string) == false) {
-        characters.push('<li>Price must contain "$" & number</li>');
+        characters.push('<li>Insert Price</li>');
     }
     return characters.join('');
 }
